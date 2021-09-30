@@ -7,7 +7,10 @@ public class MoveLeft : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        MovePipesLeft();
+        if (GameManager.gameManager.shouldPlay)
+        {
+            MovePipesLeft(); 
+        }
     }
 
     private void MovePipesLeft()

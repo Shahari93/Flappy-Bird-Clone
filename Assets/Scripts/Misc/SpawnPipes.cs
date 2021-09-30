@@ -6,7 +6,18 @@ public class SpawnPipes : MonoBehaviour
 
     private void Start()
     {
-        InvokeRepeating(nameof(Spawn), 1, ReturnRandom(1.5f, 2f));
+        if (GameManager.gameManager.shouldPlay)
+        {
+            InvokeRepeating(nameof(Spawn), 1, ReturnRandom(1.5f, 2f));
+        }
+    }
+
+    private void Update()
+    {
+        if(!GameManager.gameManager.shouldPlay)
+        {
+            CancelInvoke();
+        }
     }
 
     private void Spawn()

@@ -33,8 +33,8 @@ public class BirdControl : MonoBehaviour
     {
         if (collision.gameObject.CompareTag(pipe) || collision.gameObject.CompareTag(ground))
         {
-            Debug.Log("hit");
             this.enabled = false;
+            GameManager.gameManager.shouldPlay = false; 
         }
     }
 
