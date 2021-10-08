@@ -43,3 +43,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Ground
+    uniqueID: 2756877973
+    locked: 0
+  - name: Pipe
+    uniqueID: 2482554771
+    locked: 0

@@ -2,19 +2,19 @@ using UnityEngine;
 
 public class SpawnPipes : MonoBehaviour
 {
-    [SerializeField] private GameObject pipePrefab;
+    [SerializeField] private GameObject columnPrefab;
 
     private void Start()
     {
         if (GameManager.gameManager.shouldPlay)
         {
-            InvokeRepeating(nameof(Spawn), 1, ReturnRandom(1.5f, 2f));
+            InvokeRepeating(nameof(Spawn), 1, ReturnRandom(1.5f, 3.5f));
         }
     }
 
     private void Update()
     {
-        if(!GameManager.gameManager.shouldPlay)
+        if (!GameManager.gameManager.shouldPlay)
         {
             CancelInvoke();
         }
@@ -22,9 +22,14 @@ public class SpawnPipes : MonoBehaviour
 
     private void Spawn()
     {
-        Vector3 pos = new Vector3(3, ReturnRandom(-2, 2), 0);
-        GameObject pipe = Instantiate(pipePrefab, transform.position + pos, Quaternion.identity);
-        pipe.transform.localScale = new Vector3(1, ReturnRandom(1, 1.3f), 1);
+        Vector3 pos = new Vector3(3, transform.position.y /*ReturnRandom(0, 2)*/, 0);
+        GameObject column = Instantiate(columnPrefab, transform.position + pos, Quaternion.identity);
+        SpriteRenderer[] pipes = column.GetComponentsInChildren<SpriteRenderer>();
+        for (int i = 0; i < pipes.Length; i++)
+        {
+            pipes[0].size = new Vector2(pipes[i].size.x, ReturnRandom(3f,5.5f));
+            pipes[1].size = new Vector2(pipes[i].size.x, ReturnRandom(-5.5f, -3f));
+        }
     }
 
     private float ReturnRandom(float min, float max)
